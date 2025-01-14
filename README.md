@@ -19,11 +19,12 @@ This project leverages machine learning to predict the credit scores of individu
 ```bash
 git clone https://github.com/lucas04200/CreditRiskPrediction.git
 cd credit-score-prediction
+```
 ### 2. Run the Application with Docker
 To start the application, simply use Docker Compose:
 ```bash
 docker-compose up -d
-
+```
 This command will launch the application in the background. You can then access it via your web browser.
 
 ---
