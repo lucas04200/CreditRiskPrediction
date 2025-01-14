@@ -43,16 +43,6 @@ This command will launch the application in the background. You can then access 
 4. Submit the form to receive predictions.
 
 ---
-
-## Contributing
-
-Contributions are welcome! You can:
-- Fork the repository.
-- Open issues to report bugs or suggest features.
-- Submit pull requests with improvements.
-
----
-
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
