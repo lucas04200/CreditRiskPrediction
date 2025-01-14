@@ -1,42 +1,58 @@
-# Credit Score Prediction System for Bank Loans
-
-**Description**  
-This project aims to predict the credit score of individuals applying for bank loans using machine learning models. It leverages customer data such as loan amount, interest rates, and other personal information to assess the likelihood of loan approval and predict the credit score.
-
----
-
-## Features
-
-- Predicts credit scores based on user input.
-- Provides a recommendation on loan eligibility.
-- User-friendly interface with a web form for easy input.
+Credit Score Prediction System for Bank Loans
+Description
+This project leverages machine learning to predict the credit scores of individuals applying for bank loans. By analyzing customer data such as loan amounts, interest rates, and other personal details, the system evaluates the likelihood of loan approval and predicts credit scores to assist decision-making.
 
 ---
 
-## Setup Instructions
+Features
+Credit Score Prediction: Provides accurate predictions based on user input.
+Loan Eligibility Assessment: Recommends loan eligibility based on credit score.
+User-Friendly Interface: Includes a web form for seamless data input.
 
-### 1. Clone the Repository
-```bash
+---
+
+Setup Instructions
+Clone the Repository
+Clone the repository to your local machine:
 git clone https://github.com/lucas04200/credit-score-prediction.git
 cd credit-score-prediction
-2. Run the Application with Docker
-To start the application, simply use Docker Compose:
-```docker-compose up -d
-This will start the application in the background, and you can access it through your web browser.
+
+
+Run the Application with Docker
+Start the application using Docker Compose:
+docker-compose up -d
+
+This command will launch the application in the background. You can then access it via your web browser.
+
+---
 
 How It Works
-User Input: The user enters their ID, loan amount, and interest rate through the web form.
-Prediction: The backend processes the data and returns a predicted credit score and loan eligibility.
-Example
+User Input: The user provides their ID, loan amount, and interest rate through the web form.
+Prediction: The backend processes the input data and generates:
+A predicted credit score.
+Loan eligibility recommendations.
+
+Example Usage
 Enter the customer ID.
 Input the loan amount (e.g., $5000).
 Provide the interest rate (e.g., 5%).
-Submit the form to receive the predicted credit score and loan eligibility.
+Submit the form to receive predictions.
+
+---
+
 Contributing
-Feel free to fork this project, open issues, or submit pull requests. Contributions are welcome!
+Contributions are welcome! You can:
+Fork the repository.
+Open issues to report bugs or suggest features.
+Submit pull requests with improvements.
+
+---
 
 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-### 4. Contact
-For any questions, feel free to reach out to lucas.dechavanne.pro@outlook.fr
+---
+
+Contact
+For questions or support, feel free to reach out:
+Email: [lucas.dechavanne.pro@outlook.fr](mailto:lucas.dechavanne.pro@outlook.fr)
