@@ -18,7 +18,7 @@ This project leverages machine learning to predict the credit scores of individu
 ### 1. Clone the Repository
 Clone the repository to your local machine:
 bash
-git clone https://github.com/lucas04200/credit-score-prediction.git
+git clone https://github.com/lucas04200/CreditRiskPrediction.git
 cd credit-score-prediction
 ### 2. Run the Application with Docker
 Start the application using Docker Compose:
