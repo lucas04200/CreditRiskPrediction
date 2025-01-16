@@ -19,6 +19,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.feature_selection import SelectFromModel
 import pickle
+import os
 warnings.filterwarnings('ignore')
 
 
@@ -90,9 +91,13 @@ def preprocess_data(X):
 
 
 # Save model
-def save_model(model, filename="best_model.pkl"):
-    with open(filename, "wb") as file:
+def save_model(model, folder_path="../artifacts/", filename="best_model.pkl"):
+    os.makedirs(folder_path, exist_ok=True)
+    file_path = os.path.join(folder_path, filename)
+    # Sauvegarde du modèle
+    with open(file_path, "wb") as file:
         pickle.dump(model, file)
+    print(f"Modèle sauvegardé dans : {file_path}")
 
 # Load pkl file
 def load_model(filename="best_model.pkl"):
