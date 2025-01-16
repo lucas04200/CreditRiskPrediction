@@ -102,57 +102,57 @@ def load_model(filename="best_model.pkl"):
 
 
 def optimize_model(X, Y, best_model_name, best_model, scoring):
-    # Utiliser la clé du modèle pour récupérer la grille de paramètres
+    # Grilles de paramètres sans préfixe `model__` pour les modèles simples
     param_grids = {
         'CART': {
-            'model__max_depth': [None, 5, 10, 15, 20, 30],
-            'model__min_samples_split': [2, 5, 10, 20],
-            'model__min_samples_leaf': [1, 2, 4]
+            'max_depth': [None, 5, 10, 15, 20, 30],
+            'min_samples_split': [2, 5, 10, 20],
+            'min_samples_leaf': [1, 2, 4]
         },
         'ID3': {
-            'model__max_depth': [None, 5, 10, 15, 20, 30],
-            'model__min_samples_split': [2, 5, 10, 20],
-            'model__min_samples_leaf': [1, 2, 4]
+            'max_depth': [None, 5, 10, 15, 20, 30],
+            'min_samples_split': [2, 5, 10, 20],
+            'min_samples_leaf': [1, 2, 4]
         },
         'Stump': {
-            'model__max_depth': [None, 1],
-            'model__min_samples_split': [2, 5, 10]
+            'max_depth': [None, 1],
+            'min_samples_split': [2, 5, 10]
         },
         'KNN': {
-            'model__n_neighbors': [3, 5, 7, 9, 11, 15],
-            'model__weights': ['uniform', 'distance'],
-            'model__metric': ['euclidean', 'manhattan', 'minkowski']
+            'n_neighbors': [3, 5, 7, 9, 11, 15],
+            'weights': ['uniform', 'distance'],
+            'metric': ['euclidean', 'manhattan', 'minkowski']
         },
         'Bag': {
-            'model__n_estimators': [100, 200, 300, 500],
-            'model__max_samples': [0.5, 0.75, 1.0],
-            'model__max_features': ['sqrt', 'log2', None]
+            'n_estimators': [100, 200, 300, 500],
+            'max_samples': [0.5, 0.75, 1.0],
+            'max_features': ['sqrt', 'log2', None]
         },
         'Ad': {
-            'model__n_estimators': [50, 100, 200, 300],
-            'model__learning_rate': [0.001, 0.01, 0.1, 0.5, 1.0]
+            'n_estimators': [50, 100, 200, 300],
+            'learning_rate': [0.001, 0.01, 0.1, 0.5, 1.0]
         },
         'RF': {
-            'model__n_estimators': [100, 200, 300, 500],
-            'model__max_depth': [None, 10, 20, 30],
-            'model__min_samples_split': [2, 5, 10],
-            'model__criterion': ['gini', 'entropy']
+            'n_estimators': [100, 200, 300, 500],
+            'max_depth': [None, 10, 20, 30],
+            'min_samples_split': [2, 5, 10],
+            'criterion': ['gini', 'entropy']
         },
         'ExtraTree': {
-            'model__n_estimators': [100, 200, 300, 500],
-            'model__max_depth': [None, 10, 20, 30],
-            'model__min_samples_split': [2, 5, 10],
-            'model__criterion': ['gini', 'entropy']
+            'n_estimators': [100, 200, 300, 500],
+            'max_depth': [None, 10, 20, 30],
+            'min_samples_split': [2, 5, 10],
+            'criterion': ['gini', 'entropy']
         },
         'MLP_1': {
-            'model__hidden_layer_sizes': [(10,), (20,), (30,), (50, 20), (100, 50)],
-            'model__alpha': [0.0001, 0.001, 0.01, 0.1],
-            'model__learning_rate_init': [0.001, 0.01, 0.1]
+            'hidden_layer_sizes': [(10,), (20,), (30,), (50, 20), (100, 50)],
+            'alpha': [0.0001, 0.001, 0.01, 0.1],
+            'learning_rate_init': [0.001, 0.01, 0.1]
         },
         'MLP_2': {
-            'model__hidden_layer_sizes': [(10,), (20,), (30,), (50, 20), (100, 50)],
-            'model__alpha': [0.0001, 0.001, 0.01, 0.1],
-            'model__learning_rate_init': [0.001, 0.01, 0.1]
+            'hidden_layer_sizes': [(10,), (20,), (30,), (50, 20), (100, 50)],
+            'alpha': [0.0001, 0.001, 0.01, 0.1],
+            'learning_rate_init': [0.001, 0.01, 0.1]
         }
     }
     
@@ -172,6 +172,7 @@ def optimize_model(X, Y, best_model_name, best_model, scoring):
     else:
         print(f"Pas de grille de paramètres définie pour {best_model_name}.")
         return best_model
+
 
 
 
@@ -199,6 +200,7 @@ def nb_variables(X,Y,features, best_model, sorted_idx, scoring):
     return scores
 
 # Main function
+# Main function
 def automate_pipeline(X, y, features, scoring):
     print("Start pipeline")
 
@@ -220,40 +222,32 @@ def automate_pipeline(X, y, features, scoring):
 
     for dataset_name, dataset in datasets.items():
         print(f"\nTesting on {dataset_name} dataset")
-        best_model, best_score, best_model_name = run_classifier(dataset, y, clfs, scoring)
+        best_model, best_score, model_name = run_classifier(dataset, y, clfs, scoring)
 
         if best_score > best_overall_score:
             best_overall_score = best_score
             best_overall_model = best_model
             best_dataset_name = dataset_name
-            best_model_name = best_model_name
+            best_model_name = model_name
 
-    print(f"\nBest model: {best_model_name} on {best_dataset_name} dataset with score: {best_overall_score:.3f}")
+    print(f"\nBest overall model: {best_model_name} on {best_dataset_name} dataset with score: {best_overall_score:.3f}")
 
-    # Step 4: Feature selection
-    print('Step 4: Feature selection')
-    sorted_idx = selection_variables(datasets[best_dataset_name], y)
-    score_feature = nb_variables(datasets[best_dataset_name], y, features, best_overall_model, sorted_idx, scoring=scoring)
-    nb_selected = np.argmax(score_feature) + 1
-    print(f"Number of selected features: {nb_selected}")
+    # Step 4: Optimize best model
+    print('Step 4: Optimizing best model')
+    optimized_model = optimize_model(X, y, best_model_name, best_overall_model, scoring)
 
-    # Step 5: Optimize the best model with GridSearchCV
-    print('Step 5: Optimize the best model') 
-    
-    # Appliquer la sélection des variables sur le dataset
-    X_selected = datasets[best_dataset_name][:, sorted_idx[:nb_selected]]
-    
-    # Appliquer le GridSearch avec les paramètres appropriés
-    optimized_model = optimize_model(
-        X_selected, y, best_model_name, best_overall_model, scoring=scoring
-    )
-    
-    # Step 6: Save the best model
-    print('Step 6: Save the best model')
+    # Step 5: Feature selection
+    print('Step 5: Feature selection')
+    sorted_idx = selection_variables(X, y)
+    scores = nb_variables(X, y, features, optimized_model, sorted_idx, scoring)
+
+    # Step 6: Save model
+    print('Step 6: Save optimized model')
     save_model(optimized_model)
 
-    print("Pipeline Finished.")
-    return optimized_model, best_overall_score
+    print("Pipeline completed successfully.")
+    return optimized_model, scores
+
 
 
 
